@@ -1,0 +1,14 @@
+{
+  "name": "flux-condenser",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest"
+  },
+  "author": "Martin Rubinsztein",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "jest": "^26.1.0"
+  }
+}

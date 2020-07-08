@@ -1,0 +1,4 @@
+node_modules
+
+#OS specifics
+.DS_Store
