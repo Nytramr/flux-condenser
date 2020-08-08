@@ -1,14 +1,21 @@
 {
   "name": "flux-condenser",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
-    "test": "npx jest"
+    "test": "npx jest",
+    "build": "npx rollup --config"
   },
   "author": "Martin Rubinsztein",
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "jest": "^26.1.0"
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "@rollup/plugin-babel": "^5.1.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
+    "jest": "^26.1.0",
+    "rollup": "^2.23.0",
+    "rollup-plugin-terser": "^6.1.0"
   }
 }
