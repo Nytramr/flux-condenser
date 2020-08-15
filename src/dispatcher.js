@@ -3,7 +3,7 @@ export class Dispatcher {
         this._actionListeners = {};
     }
     /**
-     * This method will call each listener for the given actions.
+     * This method will call each listener for the given action.
      * 
      * @param {Action} action Action name
      * @param {Object} payload The action payload data
@@ -33,14 +33,12 @@ export class Dispatcher {
     }
 
     /**
-     * This method will remove a listener from the listener list of the given action.
+     * This method will remove a listener from the listeners list for the given action.
      * 
      * @param {Action} action Action name
      * @param {Function} listener This is a listener function, it will receive the state and the action payload, it must return a new state or undefined if no changes in the state are necessary.
-     * @returns the unsubscribe function.
      */
     removeActionListener(action, listener) {
-        // TODO investigate possible memory leaking.
         this._actionListeners[action] = this._actionListeners[action].filter(cb => cb !== listener);
     }
 }
