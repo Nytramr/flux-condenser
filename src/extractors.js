@@ -1,5 +1,5 @@
 /**
- * The createExtractor function is a helper to easily create memoized extractor functions.
+ * The createMemoExtractor function is a helper to easily create memoized extractor functions.
  * 
  * @param {Function} extractorFunction A function that is going to be executed every time extractor is activated by the store
  * 
@@ -28,7 +28,6 @@ export const createMemoExtractor = (extractorFunction) => {
  * function accepts arguments as parameter that will be past to the extractorFunction, after the state argument.
  */
 export const createExtractor = (extractorFunction) => {
-  const cache = {};
   return (...args) => {
     return (state) => extractorFunction(state, ...args);
   };
