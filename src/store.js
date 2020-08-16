@@ -1,4 +1,4 @@
-import { dispatcher as globalDispatcher, Dispatcher } from './dispatcher';
+import { dispatcher as globalDispatcher } from './dispatcher';
 
 const stores = {};
 
