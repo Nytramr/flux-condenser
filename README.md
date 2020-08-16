@@ -121,7 +121,7 @@ store.subscribe(
 );
 ```
 #### createExtractor
-`createExtractor` is a helper function to create extractors that require extra parameters besides the `state`. It also provides a level of cache (memoization) to receive the same function for the same input parameters.
+`createExtractor` is a helper function to create extractors that require extra parameters besides the `state`. There is also `createMemoExtractor` helper that provides a level of cache (memoization) returning the same function for the same input parameters.
 
 ##### Usage
 ```javascript
