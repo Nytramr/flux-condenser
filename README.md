@@ -183,6 +183,28 @@ dispatcher.dispatch({action: 'ACTION_NAME', payload: { property: value }});
 // store was created before
 store.dispatch({action: 'ACTION_NAME', payload: { property: value }});
 ```
+#### createActionDispatcher
+`createActionDispatcher` is a helper function to create action dispatchers, which will dispatch actions on the global dispatcher.
+
+##### Usage
+```javascript
+import { createExtractor } from 'flux-condenser';
+// or
+const { createActionDispatcher } = require('flux-condenser');
+
+const action1Dispatcher = createActionDispatcher('ACTION_1', (property1, property2) => {
+  return {
+    property1,
+    property2,
+  };
+});
+
+// This will call the global dispatcher with an action object like {action: 'ACTION_1', payload: {property1: 'value1', property2: 'value2'}}
+action1Dispatcher('value1', 'value2');
+
+// This will call the global dispatcher with an action object like {action: 'ACTION_1', payload: {property1: 'value3', property2: 'value4'}}
+action1Dispatcher('value3', 'value4');
+```
 
 ## Webpack with multiple bundles
 Flux Condenser module should be included only once per application. In a multiple bundle Webpack solution, it means we need to extract the Flux Condenser module in a separate bundle that is going to be used by every other bundle. Webpack must be configured with the [optimization runtimeChunk](https://webpack.js.org/configuration/optimization/#optimizationruntimechunk) option to create a runtime chunk with common modules.
