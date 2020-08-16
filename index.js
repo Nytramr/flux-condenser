@@ -1,3 +1,3 @@
 export * from './src/dispatcher';
-export * from './src/selectors';
+export * from './src/extractors';
 export * from './src/store';
