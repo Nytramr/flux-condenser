@@ -5,10 +5,9 @@ export class Dispatcher {
     /**
      * This method will call each listener for the given action.
      * 
-     * @param {Action} action Action name
-     * @param {Object} payload The action payload data
+     * @param {Object<Action, payload>} Action An object containing the action name and the action Payload.
      */
-    dispatch(action, payload) {
+    dispatch({action, payload}) {
         if (!this._actionListeners[action]) {
             throw new Error(`${action} is not registered`);
         }

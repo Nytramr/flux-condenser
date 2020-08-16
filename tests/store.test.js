@@ -110,8 +110,8 @@ describe('Store', () => {
       it('should call the internal dispatcher dispatch method', () => {
         const action = 'ACTION_NAME';
         const payload = { payload: 1 };
-        store.dispatch(action, payload);
-        expect(dispatcher.dispatch).toHaveBeenCalledWith(action, payload);
+        store.dispatch({action, payload});
+        expect(dispatcher.dispatch).toHaveBeenCalledWith({action, payload});
       });
     });
 

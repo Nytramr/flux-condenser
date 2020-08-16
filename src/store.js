@@ -87,8 +87,8 @@ export class Store extends BaseStore {
     this._dispatcher = dispatcher;
   }
 
-  dispatch(action, payload) {
-    this._dispatcher.dispatch(action, payload);
+  dispatch({action, payload}) {
+    this._dispatcher.dispatch({action, payload});
   }
 
   /**

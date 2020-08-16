@@ -175,13 +175,13 @@ There are two ways to dispatch an action:
 
 **From a dispatcher**
 ```javascript
-dispatcher.dispatch('ACTION_NAME', { payload: value });
+dispatcher.dispatch({action: 'ACTION_NAME', payload: { property: value }});
 ```
 
 **From a store**
 ```javascript
 // store was created before
-store.dispatch('ACTION_NAME', { payload: value });
+store.dispatch({action: 'ACTION_NAME', payload: { property: value }});
 ```
 
 ## Webpack with multiple bundles
