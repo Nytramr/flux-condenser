@@ -1,4 +1,4 @@
-import { dispatcher as globalDispatcher, Dispatcher } from './dispatcher';
+import { dispatcher as globalDispatcher } from './dispatcher';
 
 const stores = {};
 
@@ -10,9 +10,10 @@ export class BaseStore {
   }
 
   /**
-   * This method will subscribe the store to the dispatcher dispatched.
+   * This method will subscribe the store to the given dispatcher.
+   * 
    * @param {Dispatcher} dispatcher The Dispatcher instance to subscribe the action-condenser
-   * @param {Action} action Action name
+   * @param {String} action Action name
    * @param {Function} condenser This is a callback function, it will receive the state and the action payload, it must return a new state or undefined if no changes in the state are necessary.
    * @returns the unsubscribe condenser function.
    */
@@ -38,7 +39,7 @@ export class BaseStore {
   }
 
   /**
-   * This function will unsubscribe the store's condensers from the 
+   * This method will unsubscribe the store's condensers from the dispatcher
    */
   destroyStore() {
     this._condenserUnsubscribers.forEach(unsubscriber => unsubscriber());
@@ -87,6 +88,11 @@ export class Store extends BaseStore {
     this._dispatcher = dispatcher;
   }
 
+  /**
+   * This method will dispatch a given action on the dispatcher with which this store was built.
+   * 
+   * @param {Action} action The action to be dispatched 
+   */
   dispatch({action, payload}) {
     this._dispatcher.dispatch({action, payload});
   }
@@ -94,7 +100,7 @@ export class Store extends BaseStore {
   /**
    * This method will subscribe the store to the dispatcher dispatched.
    * 
-   * @param {Action} action Action name
+   * @param {String} action Action name
    * @param {Function} condenser This is a callback function, it will receive the state and the action payload, it must return a new state or undefined if no changes in the state are necessary.
    * @returns the unsubscribe function.
    */

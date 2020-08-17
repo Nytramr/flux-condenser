@@ -5,7 +5,7 @@ export class Dispatcher {
     /**
      * This method will call each listener for the given action.
      * 
-     * @param {Object<Action, payload>} Action An object containing the action name and the action Payload.
+     * @param {Action} action An object containing the action name and the action Payload.
      */
     dispatch({action, payload}) {
         if (!this._actionListeners[action]) {
@@ -18,7 +18,7 @@ export class Dispatcher {
     /**
      * This method will add a listener process to be executed every time the action is dispatched.
      * 
-     * @param {Action} action Action name
+     * @param {String} action Action name
      * @param {Function} listener This is a listener function, it will receive the state and the action payload, it must return a new state or undefined if no changes in the state are necessary.
      * @returns the unsubscribe function.
      */
@@ -34,7 +34,7 @@ export class Dispatcher {
     /**
      * This method will remove a listener from the listeners list for the given action.
      * 
-     * @param {Action} action Action name
+     * @param {String} action Action name
      * @param {Function} listener This is a listener function, it will receive the state and the action payload, it must return a new state or undefined if no changes in the state are necessary.
      */
     removeActionListener(action, listener) {
