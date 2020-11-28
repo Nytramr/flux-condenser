@@ -6,8 +6,9 @@ import babel from '@rollup/plugin-babel';
 export default {
   input: 'index.js',
   output: {
+    name: 'flux-condenser',
     file: 'build/index.js',
-    format: 'cjs',
+    format: 'umd',
     plugins: [
       terser(),
     ]
