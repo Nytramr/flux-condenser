@@ -6,6 +6,10 @@
     "test": "npx jest",
     "build": "npx rollup --config"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Nytramr/flux-condenser.git"
+  },
   "author": "Martin Rubinsztein <martin.rubinsztein@gmail.com>",
   "license": "MIT",
   "devDependencies": {
