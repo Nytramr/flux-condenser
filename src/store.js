@@ -48,7 +48,7 @@ export class BaseStore {
   /**
    * 
    * @param {Function} dataHandler This function is executed with the new data extracted via the extractor
-   * @param {Element} extractor This function is to extract a portion of data from the state of the store
+   * @param {Function} extractor This function is to extract a portion of data from the state of the store
    */
   subscribe(dataHandler, extractor) {
     if (!this._subscribers.has(extractor)) {
@@ -76,7 +76,7 @@ export class BaseStore {
    * 
    * It is the developer responsibility not to mess up with the data
    * 
-   * @param {function} extractor a function to return a piece of the stored data
+   * @param {Function} extractor a function to return a piece of the stored data
    */
   execExtractor(extractor) {
     return extractor(this._state);
