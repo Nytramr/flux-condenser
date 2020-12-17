@@ -3,7 +3,7 @@
  * 
  * @param {Function} extractorFunction A function that is going to be executed every time extractor is activated by the store
  * 
- * @returns A constructor function to create extractors, using the extractorFunction. This constructor 
+ * @returns {Function} A constructor function to create extractors, using the extractorFunction. This constructor 
  * function accepts arguments as parameter that will be past to the extractorFunction, after the state argument.
  * It is worth to mention that the returned functions are memoized, therefore the same function is going to be
  * returned to the same given arguments.
@@ -24,7 +24,7 @@ export const createMemoExtractor = (extractorFunction) => {
  * 
  * @param {Function} extractorFunction A function that is going to be executed every time extractor is activated by the store
  * 
- * @returns A constructor function to create extractors, using the extractorFunction. This constructor 
+ * @returns {Function} A constructor function to create extractors, using the extractorFunction. This constructor 
  * function accepts arguments as parameter that will be past to the extractorFunction, after the state argument.
  */
 export const createExtractor = (extractorFunction) => {
