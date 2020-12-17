@@ -1,15 +1,16 @@
-import { Action, Dispatcher } from "./dispatcher";
+import { Action } from "./actions";
+import { Dispatcher } from "./dispatcher";
 
-export function createStore<T, A>(
+export function createStore<DATA, ACTIONS>(
   symbol: symbol,
-  initialData: T,
-  condensers?: Array<[A, (initialState: T, payload: any) => T]>
-): Store<T, A>;
+  initialData: DATA,
+  condensers?: Array<[ACTIONS, (initialState: DATA, payload: Action<ACTIONS>['payload']) => DATA]>
+): Store<DATA, ACTIONS>;
 
 export function getStore<T, A>(symbol: symbol): BaseStore<T, A>;
 
-export class BaseStore<T, A> {
-  constructor(initialState?: T);
+export class BaseStore<DATA, ACTIONS> {
+  constructor(initialState?: DATA);
   /**
    * This method will subscribe the store to the given dispatcher.
    *
@@ -19,9 +20,9 @@ export class BaseStore<T, A> {
    * @returns the unsubscribe condenser function.
    */
   addCondenser(
-    dispatcher: Dispatcher<A>,
-    action: A,
-    condenser: (initialState: T, payload: any) => T
+    dispatcher: Dispatcher<ACTIONS>,
+    action: ACTIONS,
+    condenser: (initialState: DATA, payload: any) => DATA
   ): () => void;
   /**
    * This method will unsubscribe the store's condensers from the dispatcher
@@ -32,8 +33,8 @@ export class BaseStore<T, A> {
    * @param {Function} dataHandler This function is executed with the new data extracted via the extractor
    * @param {Function} extractor This function is to extract a portion of data from the state of the store
    */
-  subscribe(dataHandler: Function, extractor: (state: T) => any): () => void;
-  unSubscribe(dataHandler: Function, extractor: (state: T) => any): void;
+  subscribe<T>(dataHandler: (data: T) => any, extractor: (state: DATA) => T): () => void;
+  unSubscribe<T>(dataHandler: (data: T) => any, extractor: (state: DATA) => T): void;
   /**
    * execExtractor will execute a extractor against the store data and return whatever it returns.
    *
@@ -41,15 +42,15 @@ export class BaseStore<T, A> {
    *
    * @param {Function} extractor a function to return a piece of the stored data
    */
-  execExtractor(extractor: (state: T) => any): any;
+  execExtractor(extractor: (state: DATA) => any): any;
 }
 
-export class Store<T, A> extends BaseStore<T, A> {
-  constructor(dispatcher: Dispatcher<A>, initialState?: T);
+export class Store<DATA, ACTIONS> extends BaseStore<DATA, ACTIONS> {
+  constructor(dispatcher: Dispatcher<ACTIONS>, initialState?: DATA);
   /**
    * This method will dispatch a given action on the dispatcher with which this store was built.
    *
    * @param {Action} action The action to be dispatched
    */
-  dispatch({ action, payload }: Action<A>): void;
+  dispatch({ action, payload }: Action<ACTIONS>): void;
 }

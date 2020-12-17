@@ -1,25 +1,36 @@
 {
   "compilerOptions": {
-      "baseUrl": ".",
-      "module": "umd",
-      "lib": [
-          "es6"
-      ],
-      "paths": {
-        "flux-condenser": ["build/index"]
-      },
-      "noImplicitAny": true,
-      "noImplicitThis": true,
-      "strictFunctionTypes": true,
-      "strictNullChecks": true,
-      "typeRoots": [
-          "./build"
-      ],
-      "types": [],
-      "noEmit": true,
-      "forceConsistentCasingInFileNames": true
+    "baseUrl": ".",
+    "module": "umd",
+    "lib": [
+      "es6"
+    ],
+    "paths": {
+      "flux-condenser": [
+        "build/index"
+      ]
+    },
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "typeRoots": [
+      "./build"
+    ],
+    "types": [],
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true
   },
+  "exclude": [
+    "**/*.js",
+    "**/*.json",
+    "**/*.md",
+    "**/*.lock",
+    "node_modules",
+    "src",
+    "tests"
+  ],
   "files": [
-      "./types/tests/index.ts"
+    "./types/tests/index.ts"
   ]
 }

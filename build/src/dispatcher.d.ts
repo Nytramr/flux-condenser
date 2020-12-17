@@ -1,7 +1,4 @@
-export type Action<A> = {
-  action: A;
-  payload: any;
-};
+import { Action } from './actions';
 
 export class Dispatcher<A> {
   /**
