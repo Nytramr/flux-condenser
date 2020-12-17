@@ -1,3 +1,5 @@
+type Extractor<T, O = any> = (state: T) => O;
+
 /**
  * The createMemoExtractor function is a helper to easily create memoized extractor functions.
  * 
@@ -8,16 +10,7 @@
  * It is worth to mention that the returned functions are memoized, therefore the same function is going to be
  * returned to the same given arguments.
  */
-export const createMemoExtractor = (extractorFunction) => {
-  const cache = {};
-  return (...args) => {
-    const key = JSON.stringify(args);
-    if (!cache[key]) {
-      cache[key] = (state) => extractorFunction(state, ...args);
-    }
-    return cache[key];
-  };
-}
+export function createMemoExtractor<T, A extends any[], O = any>(extractorFunction: (state: T, ...args: A) => O): (...args: A) => Extractor<T, O>;
 
 /**
  * The createExtractor function is a helper to easily create extractor functions.
@@ -27,8 +20,4 @@ export const createMemoExtractor = (extractorFunction) => {
  * @returns {Function} A constructor function to create extractors, using the extractorFunction. This constructor 
  * function accepts arguments as parameter that will be past to the extractorFunction, after the state argument.
  */
-export const createExtractor = (extractorFunction) => {
-  return (...args) => {
-    return (state) => extractorFunction(state, ...args);
-  };
-}
+export function createExtractor<T, A extends any[], O = any>(extractorFunction: (state: T, ...args: A) => O): (...args: A) => Extractor<T, O>;
