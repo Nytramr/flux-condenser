@@ -206,6 +206,81 @@ action1Dispatcher('value1', 'value2');
 action1Dispatcher('value3', 'value4');
 ```
 
+## Typescript
+This project implements TypeScript definitions for the use in TypeScript projects.
+
+### Usage
+```typescript
+/// <reference types="node" />
+
+import { createStore, createExtractor } from "flux-condenser";
+const storeName = Symbol("my-store");
+
+// actions
+export enum Actions {
+  SET_HEADER = "SET_HEADER",
+  SET_SUB_TITLE = "SET_SUB_TITLE",
+}
+
+// Store data types
+type Header = {
+  title: string;
+  subTitle: string;
+};
+
+type Body = {
+  amount: number;
+  children: Record<string, string>;
+};
+
+type Data = {
+  header?: Header;
+  body?: Body;
+};
+
+// condensers
+function setHeader(initialState: Data, payload: Header): Data {
+  return {
+    ...initialState,
+    header: payload,
+  };
+}
+
+function setBody(initialState: Data, payload: Body): Data {
+  return {
+    ...initialState,
+    body: payload,
+  };
+}
+
+// Create a store
+export const store = createStore<Data, Actions>(storeName, {}, [
+  [Actions.SET_HEADER, setHeader],
+  [Actions.SET_SUB_TITLE, setBody],
+]);
+
+// Extractors
+const getBodyExtractor = (data: Data) => {
+  return data.body;
+};
+
+// Extractors creators
+const extractorFunction = (data: Data, id: string): string | undefined => {
+  return data.body && data.body.children[id];
+};
+const extractor = createExtractor<Data, [string], string | undefined>(extractorFunction);
+
+// Add extractors to store
+store.subscribe((body: Body | undefined) => {
+  // do something with the body
+}, getBodyExtractor);
+
+store.subscribe((value: string | undefined) => {
+  // do something with the value
+}, extractor('some id'));
+
+```
+
 ## Webpack with multiple bundles
 Flux Condenser module should be included only once per application. In a multiple bundle Webpack solution, it means we need to extract the Flux Condenser module in a separate bundle that is going to be used by every other bundle. Webpack must be configured with the [optimization runtimeChunk](https://webpack.js.org/configuration/optimization/#optimizationruntimechunk) option to create a runtime chunk with common modules.
 
