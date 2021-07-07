@@ -21,11 +21,14 @@ describe('Actions', () => {
             property2,
           };
         });
-  
+
         action1Dispatcher('value1', 'value2');
 
         expect(dispatcher.dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatcher.dispatch).toHaveBeenCalledWith('ACTION_1', {property1: 'value1', property2: 'value2'});
+        expect(dispatcher.dispatch).toHaveBeenCalledWith({
+          action: 'ACTION_1',
+          payload: { property1: 'value1', property2: 'value2' },
+        });
       });
     });
   });
