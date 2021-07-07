@@ -3,3 +3,4 @@ build/index.js
 
 #OS specifics
 .DS_Store
+build/index.mjs
