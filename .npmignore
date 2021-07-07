@@ -6,3 +6,4 @@ rollup.config.js
 .gitignore
 tsconfig.json
 index.js
+.prettierrc.yaml
