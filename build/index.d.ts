@@ -1,6 +1,6 @@
 declare module 'flux-condenser';
 
-export * from "./src/actions";
-export * from "./src/dispatcher";
-export * from "./src/extractors";
-export * from "./src/store";
+export * from "./types/actions";
+export * from "./types/dispatcher";
+export * from "./types/extractors";
+export * from "./types/store";

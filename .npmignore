@@ -4,4 +4,5 @@ tests
 babel.config.js
 rollup.config.js
 .gitignore
-
+tsconfig.json
+index.js
