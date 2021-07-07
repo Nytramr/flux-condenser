@@ -5,5 +5,5 @@ babel.config.js
 rollup.config.js
 .gitignore
 tsconfig.json
-index.js
+main.js
 .prettierrc.yaml
